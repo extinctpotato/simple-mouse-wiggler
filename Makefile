@@ -5,7 +5,7 @@ BOARD_TTY	= /dev/ttyACM0
 BUILDDIR 	= build
 LIBDIR		= lib
 
-SKETCH		= mouse_wiggler 
+SKETCH		= mouse_wiggler
 SKETCHLIBS	= $(addprefix --libraries ,$(wildcard $(LIBDIR)/*))
 SKETCHHEX	= $(BUILDDIR)/$(SKETCH).ino.with_bootloader.hex
 
@@ -14,6 +14,6 @@ build: $(SKETCHHEX)
 upload: build
 	$(ARD) upload -b $(BOARD_FQBN) -p $(BOARD_TTY) --input-dir=$(BUILDDIR)
 
-$(BUILDDIR)/%.ino.with_bootloader.hex: %.ino
+$(BUILDDIR)/%.ino.with_bootloader.hex: $(SKETCH)/%.ino
 	@echo "Compiling $< into $@"
 	$(ARD) compile -b $(BOARD_FQBN) $(SKETCHLIBS) --build-path $(BUILDDIR) $<
