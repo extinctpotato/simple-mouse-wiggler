@@ -1,0 +1,3 @@
+[submodule "lib/Mouse"]
+	path = lib/Mouse
+	url = https://github.com/arduino-libraries/Mouse.git
